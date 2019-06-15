@@ -1,14 +1,20 @@
-FROM Ubuntu latest
+FROM Ubuntu:latest
 
 MAINTAINER admin@gmail.com
 
-RUN sudo apt-get install httpd -y
+WORKDIR usr/apps/
+
+RUN  apt-get update -y
+
+RUN apt-get install -y npm
+
+RUN apt-get install -y nodejs
 
 
-COPY index.html /var/www/html
+ADD index.html /usr/apps/ /index.html
 
-EXPOSE  80
 
-CMD apachectl -D FOREGROUND
+
+CMD ["http-server", "-s"]
 
 
