@@ -1,23 +1,10 @@
-FROM Ubuntu:latest
+FROM tomcat:8-jre8
 
-MAINTAINER admin@gmail.com
-
-WORKDIR usr/apps/hello-docker
+MAINTAINER "admin@gmail.com"
 
 RUN  apt-get update -y
 
-RUN apt-get install -y npm
+COPY ./webapp.war /usr/local/tomcat/webapps
 
-RUN apt-get install -y nodejs
-
-RUN npm install -g http-server
-
-ADD . /usr/apps/hello-docker/
-
-ADD index.html /usr/apps/ /index.html
-
-
-
-CMD ["http-server", "-s"]
 
 
